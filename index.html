@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Viewer</title>
+    <script>
+        document.cookie = "CloudFront-Signature=eUrKLN-B6o3QH6K0l5eMZBtkeTu0xYumk~bow75~Tyyvb5SNXFGEIeWiT3lDkryRi3gvWRCxXJGh3LicE15GwEVMK0xGzyBVXuVWLaZywhYuvsWkeifG-tJX0uqaywlbci3ZmRAhDpshINOlBXZwIXhqDgiilbnKBOl6VU-Zx14I9ghb1WL7rq8TQkzNRFBfF9JMmzweSdOdqz3-DwL-va7I0FiRr7sCg3bDa~CvG74J3Wex3ws3gbn-3XfH8N5fZveR8G~sG-oin8nUp4muUpH1XB7aKF~tA81AnyRX6aWqk96-iTyz32ORZ9frgP5FThw5XVKcFzQrDfZMD5Zrgg__; Path=/; Secure; SameSite=None";
+        document.cookie = "CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jb250ZW50LmdlbjIuYWkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5NjQ2NTI0N319fV19; Path=/; Secure; SameSite=None";
+        document.cookie = "CloudFront-Key-Pair-Id=KRCVY93K4RJDS; Path=/; Secure; SameSite=None";
+    </script>
+</head>
+
+<body>
+    <h1>Image Viewer</h1>
+
+    <h2>Images:</h2>
+    <div id="content">
+
+    </div>
+    <script>
+        async function loadImageWithCookies(url, imgElement) {
+            try {
+                let imgElem = document.createElement('img');
+
+                // Fetch the image with cookies included in the request
+                let res = await fetch(url, { credentials: 'include', mode: 'cors' });
+
+                // Check if the response status is OK (200)
+                if (res.status === 200) {
+                    imgElem.src = URL.createObjectURL(await res.blob());
+
+                    let contentDiv = document.getElementById('content');
+                    contentDiv.appendChild(imgElem);
+                    contentDiv.appendChild(document.createElement('br'));
+                } else {
+                    console.error('Failed to load image:', res.status, res.statusText);
+                }
+            } catch (error) {
+                console.error('Error loading image:', error);
+            }
+        }
+
+        loadImageWithCookies('https://content.gen2.ai/local/org_id/test2.png');
+        loadImageWithCookies('https://content.gen2.ai/local/org_id/test.png');
+        loadImageWithCookies('https://content.gen2.ai/local/org_id/project_id/test.png');
+    </script>
+</body>
+
+</html>
