@@ -4,8 +4,8 @@
 <head>
     <title>Image Viewer</title>
     <script>
-        document.cookie = "CloudFront-Signature=b6jw3iiqlebJksx6UPXdgBHPnXGaiTYTrOzMQhWHfyaDx8D56ZHneZBwHii9czmwJuAoi1GemHI05lQaoNAyRntCuZIzN~zs-QVzopDQUD970opoC37RBJpj6FUM1Ldjyvo9QQBmGqR8gZ1ZwjCxfvm-JHBBUTDf9~xlWLT8vH69zjjGPEXSDyN82vEupOu2P49IL3NDt9uOyGo9C5pxj3UtelhlZSctkoM8P8KvYqTOY~BiqP35MAHyoMyiDLEmnrG9s1mAuzaNTKeIGYr1biv1A7-bx5n39oTdTo2tFlm23AG4W0CM5IoAqJSJ1It4rp1t68ZboEcDQEohi0-3RQ__; Path=/; Secure; SameSite=None";
-        document.cookie = "CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jb250ZW50LmdlbjIuYWkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5NjU1ODUxOH19fV19; Path=/; Secure; SameSite=None";
+        document.cookie = "CloudFront-Signature=Kwy43skitQ9eO872FVb55A4NVu~n5gsQMbGWw6SSaWJ~DLWeSm2OjPGm-8dLEf5y9rTSphjIOfoEyeUeRh0RJzM-zpiuJV8Dwl~bNbsKAwBRP9qv0Du1zWyTu07HvFIFjp-QxqH8NBsRFCntyXItbltg~9NFMNWYx0t4IqQSjIZZqsPbBQ7clcoa~jHJxnw-tEzgNKpF0vr7ueMLE3XqEqJ8u31VHnXcKQDj~Vf3eJp362LHnuUgkSaIsNgVnI-lCf5ofqPr1cmqsV-0NssHy~vyDRzF9ivMo4POIatToXiOGtRWENqt07aUbejxR3T9LKyZgN4d3~-BMY4-EZ9CyA__; Path=/; Secure; SameSite=None";
+        document.cookie = "CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jb250ZW50LmdlbjIuYWkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5NjYzNDA4OH19fV19; Path=/; Secure; SameSite=None";
         document.cookie = "CloudFront-Key-Pair-Id=KRCVY93K4RJDS; Path=/; Secure; SameSite=None";
     </script>
 </head>
@@ -19,11 +19,22 @@
     </div>
     <script>
         async function loadImageWithCookies(url, imgElement) {
+            // cookies = document.cookie.split(";")
+
+            // let cookie_map = {}
+
+
+            // for(var i=0; i<cookies.length; i++) {
+            // name = cookies[i].split('=')[0].trim();
+            // value = cookies[i].split('=')[1].trim();
+            // cookie_map[name] = value
+            // }
+            // url = `${url}?Policy=${cookie_map['CloudFront-Policy']}&Signature=${cookie_map['CloudFront-Signature']}&Key-Pair-Id=${cookie_map['CloudFront-Key-Pair-Id']}`
             try {
                 let imgElem = document.createElement('img');
 
                 // Fetch the image with cookies included in the request
-                let res = await fetch(url, { credentials: 'include', mode: 'cors' });
+                let res = await fetch(url, { credentials: "include", mode: 'cors' });
 
                 // Check if the response status is OK (200)
                 if (res.status === 200) {
