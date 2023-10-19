@@ -4,9 +4,9 @@
 <head>
     <title>Image Viewer</title>
     <script>
-        document.cookie = "CloudFront-Signature=Kwy43skitQ9eO872FVb55A4NVu~n5gsQMbGWw6SSaWJ~DLWeSm2OjPGm-8dLEf5y9rTSphjIOfoEyeUeRh0RJzM-zpiuJV8Dwl~bNbsKAwBRP9qv0Du1zWyTu07HvFIFjp-QxqH8NBsRFCntyXItbltg~9NFMNWYx0t4IqQSjIZZqsPbBQ7clcoa~jHJxnw-tEzgNKpF0vr7ueMLE3XqEqJ8u31VHnXcKQDj~Vf3eJp362LHnuUgkSaIsNgVnI-lCf5ofqPr1cmqsV-0NssHy~vyDRzF9ivMo4POIatToXiOGtRWENqt07aUbejxR3T9LKyZgN4d3~-BMY4-EZ9CyA__; Path=/; Secure; SameSite=None";
-        document.cookie = "CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jb250ZW50LmdlbjIuYWkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5NjYzNDA4OH19fV19; Path=/; Secure; SameSite=None";
-        document.cookie = "CloudFront-Key-Pair-Id=KRCVY93K4RJDS; Path=/; Secure; SameSite=None";
+        document.cookie = "CloudFront-Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jb250ZW50LmdlbjIuYWkvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5Nzc2MDA1N319fV19;"
+        document.cookie = "CloudFront-Signature=AnsRmWLl3~z7~3HOBixfHjCdwokdPKm6vdCNVcJwTjB9qXfA5jmGyw2hgM7~RqoWwMnrAR3ub2ybCepfJOyEOM5qBCfpJswaO05qyhISn~WiK7ksGccoiEvqVxwGn10GDeLkGEor8w4c98MBoERQTGTcQ0EwFwdHbLfaJKACsEhAnrjXu86FU8Sy114StU7Wdi43zUT-XIMz9NbvwHii3cFQTP6nCWg0Ur3fIlRCHe5og448mb8Rdg9XPJD4zQ1114FawpL-SZLCoVpu82GPEclKgdRcIR8xMNcJqerGl5qh0nbwXCN-hES8ive6vyC3zXJtIra8dQCeFMHFJ-RbrA__;"
+        document.cookie = "CloudFront-Key-Pair-Id=KRCVY93K4RJDS;"
     </script>
 </head>
 
@@ -30,11 +30,12 @@
             // cookie_map[name] = value
             // }
             // url = `${url}?Policy=${cookie_map['CloudFront-Policy']}&Signature=${cookie_map['CloudFront-Signature']}&Key-Pair-Id=${cookie_map['CloudFront-Key-Pair-Id']}`
+
             try {
                 let imgElem = document.createElement('img');
 
                 // Fetch the image with cookies included in the request
-                let res = await fetch(url, { credentials: "include", mode: 'cors' });
+                let res = await fetch(url, { credentials: "include", mode: 'cors', headers: { 'Host': 'content.gen2.ai' } });
 
                 // Check if the response status is OK (200)
                 if (res.status === 200) {
